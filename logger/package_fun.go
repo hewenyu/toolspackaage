@@ -55,7 +55,7 @@ func Fatal(args ...interface{}) {
 Infof 加入了format
 */
 func Infof(template string, args ...interface{}) {
-	mylog.Infof(template, args)
+	mylog.Infof(FuncCallerName()+template, args)
 }
 
 /*
@@ -69,33 +69,33 @@ func Debugf(template string, args ...interface{}) {
 Warnf 加入了format
 */
 func Warnf(template string, args ...interface{}) {
-	mylog.Debugf(template, args)
+	mylog.Debugf(FuncCallerName()+template, args)
 }
 
 /*
 DPanicf 加入了format
 */
 func DPanicf(template string, args ...interface{}) {
-	mylog.DPanicf(template, args)
+	mylog.DPanicf(FuncCallerName()+template, args)
 }
 
 /*
 Errorf 加入了format
 */
 func Errorf(template string, args ...interface{}) {
-	mylog.Errorf(template, args)
+	mylog.Errorf(FuncCallerName()+template, args)
 }
 
 /*
 Errorf 加入了format
 */
 func Panicf(template string, args ...interface{}) {
-	mylog.Panicf(template, args)
+	mylog.Panicf(FuncCallerName()+template, args)
 }
 
 /*
 Fatalf 加入了format
 */
 func Fatalf(template string, args ...interface{}) {
-	mylog.Fatalf(template, args)
+	mylog.Fatalf(FuncCallerName()+template, args)
 }
