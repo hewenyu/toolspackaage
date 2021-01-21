@@ -2,8 +2,7 @@ package logger
 
 func init() {
 
-	var a *Hliog
-	a.SetName("test")
-	a.SetPath("./logs")
-
+	h.SetName("test")
+	h.SetPath("./logs")
+	New()
 }

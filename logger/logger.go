@@ -10,9 +10,12 @@ type Hliog struct {
 	LogPath string
 	LogName string
 	Level   zapcore.Level
+	base    *zap.SugaredLogger
 }
 
-var h *Hliog
+var (
+	h *Hliog
+)
 
 /*
 SetName 设置默认名称
@@ -84,17 +87,20 @@ func newLogger(filePath string, level zapcore.Level, maxSize int, maxBackups int
 	)
 }
 
-func New() (hliog *zap.SugaredLogger) {
-	return h.New()
+/*
+New 创建日志
+*/
+func New() {
+	h.New()
 }
 
 /*
 New 创建日志
 */
-func (h *Hliog) New() (hliog *zap.SugaredLogger) {
-
+func (h *Hliog) New() {
+	// 日志初始化
 	core := newLogger(h.LogPath, h.Level, 128, 30, 7, true)
 	Logger := zap.New(core, zap.AddCaller(), zap.AddCallerSkip(1), zap.Development())
-	hliog = Logger.Sugar()
+	h.base = Logger.Sugar()
 	return
 }
