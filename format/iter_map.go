@@ -1,4 +1,4 @@
-package toolspackage
+package format
 
 import (
 	"bytes"
