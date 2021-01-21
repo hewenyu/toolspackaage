@@ -16,23 +16,23 @@ type Hliog struct {
 	base    *zap.SugaredLogger
 }
 
-var mylog = defult()
-var defultPath = "."
+var defultPath = "./logs"
 var defultName = "work.log"
 
-/*
-SetName 设置默认名称
-*/
-func SetName(logname string) { defultName = logname }
+var mylog = Defult()
 
 /*
 SetName 设置默认名称
 */
-func (h *Hliog) SetName(logname string) {
-	h.LogName = logname
+func SetName(logname string) {
+	defultName = logname
+	mylog = Defult()
 }
 
-func SetPath(in string) { defultPath = absPathify(in) }
+func SetPath(in string) {
+	defultPath = absPathify(in)
+	mylog = Defult()
+}
 
 /*
 SetPath 设置路径
@@ -97,7 +97,7 @@ func New() {
 	mylog.New()
 }
 
-func defult() (dlog *Hliog) {
+func Defult() (dlog *Hliog) {
 
 	var (
 		err error
