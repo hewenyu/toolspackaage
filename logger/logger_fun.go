@@ -1,5 +1,9 @@
 package logger
 
+// func (s *HsLogs) With(args ...interface{}) *Hliog {
+// 	return &Hliog{base: s.base.With(s.sweetenFields(args)...)}
+// }
+
 /*
 INFO
 */
@@ -28,20 +32,26 @@ func (s *Hliog) DPanic(args ...interface{}) {
 	s.base.DPanic(args)
 }
 
-// func (s *HsLogs) With(args ...interface{}) *Hliog {
-// 	return &Hliog{base: s.base.With(s.sweetenFields(args)...)}
-// }
+/*
+Error
+*/
+func (s *Hliog) Error(args ...interface{}) {
+	s.base.Error(args)
+}
 
-// // Error uses fmt.Sprint to construct and log a message.
-// func (s *SugaredLogger) Error(args ...interface{}) {
-// 	s.log(ErrorLevel, "", args, nil)
-// }
+/*
+Panic
+*/
+func (s *Hliog) Panic(args ...interface{}) {
+	s.base.Panic(args)
+}
 
-// // DPanic uses fmt.Sprint to construct and log a message. In development, the
-// // logger then panics. (See DPanicLevel for details.)
-// func (s *SugaredLogger) DPanic(args ...interface{}) {
-// 	s.log(DPanicLevel, "", args, nil)
-// }
+/*
+Fatal
+*/
+func (s *Hliog) Fatal(args ...interface{}) {
+	s.base.Fatal(args)
+}
 
 // // Panic uses fmt.Sprint to construct and log a message, then panics.
 // func (s *SugaredLogger) Panic(args ...interface{}) {
