@@ -1,9 +1,11 @@
-package toolspackage
+package main
 
 import "github.com/hewenyu/toolspackage/logger"
 
 func main() {
-	var a *logger.Hliog
-	a.SetName("test")
-	a.SetPath("./logs")
+	logger.SetName("test111.log")
+	logger.SetPath("./logs")
+	// logger.New()
+
+	logger.Info("hello")
 }

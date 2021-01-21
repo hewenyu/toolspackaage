@@ -4,49 +4,49 @@ package logger
 INFO
 */
 func Info(args ...interface{}) {
-	h.Info(args)
+	mylog.Info(FuncCallerName(), args)
 }
 
 /*
 DEBUG
 */
 func Debug(args ...interface{}) {
-	h.Debug(args)
+	mylog.Debug(FuncCallerName(), args)
 }
 
 /*
 Warn
 */
 func Warn(args ...interface{}) {
-	h.Debug(args)
+	mylog.Warn(FuncCallerName(), args)
 }
 
 /*
 DPanic
 */
 func DPanic(args ...interface{}) {
-	h.DPanic(args)
+	mylog.DPanic(FuncCallerName(), args)
 }
 
 /*
 Error
 */
 func Error(args ...interface{}) {
-	h.Error(args)
+	mylog.Error(FuncCallerName(), args)
 }
 
 /*
 Error
 */
 func Panic(args ...interface{}) {
-	h.Panic(args)
+	mylog.Panic(FuncCallerName(), args)
 }
 
 /*
 Fatal
 */
 func Fatal(args ...interface{}) {
-	h.Fatal(args)
+	mylog.Fatal(FuncCallerName(), args)
 }
 
 // ------format-------
@@ -55,47 +55,47 @@ func Fatal(args ...interface{}) {
 Infof 加入了format
 */
 func Infof(template string, args ...interface{}) {
-	h.Infof(template, args)
+	mylog.Infof(template, args)
 }
 
 /*
 DEBUGf加入了format
 */
 func Debugf(template string, args ...interface{}) {
-	h.Debugf(template, args)
+	mylog.Debugf(template, args)
 }
 
 /*
 Warnf 加入了format
 */
 func Warnf(template string, args ...interface{}) {
-	h.Debugf(template, args)
+	mylog.Debugf(template, args)
 }
 
 /*
 DPanicf 加入了format
 */
 func DPanicf(template string, args ...interface{}) {
-	h.DPanicf(template, args)
+	mylog.DPanicf(template, args)
 }
 
 /*
 Errorf 加入了format
 */
 func Errorf(template string, args ...interface{}) {
-	h.Errorf(template, args)
+	mylog.Errorf(template, args)
 }
 
 /*
 Errorf 加入了format
 */
 func Panicf(template string, args ...interface{}) {
-	h.Panicf(template, args)
+	mylog.Panicf(template, args)
 }
 
 /*
 Fatalf 加入了format
 */
 func Fatalf(template string, args ...interface{}) {
-	h.Fatalf(template, args)
+	mylog.Fatalf(template, args)
 }

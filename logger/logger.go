@@ -16,25 +16,23 @@ type Hliog struct {
 	base    *zap.SugaredLogger
 }
 
-var (
-	h *Hliog
-)
+var mylog = defult()
+var defultPath = "."
+var defultName = "work.log"
 
 /*
 SetName 设置默认名称
 */
-func SetName(logname string) { h.SetName(logname) }
+func SetName(logname string) { defultName = logname }
 
 /*
 SetName 设置默认名称
 */
 func (h *Hliog) SetName(logname string) {
-
-	absPathify(".")
-
+	h.LogName = logname
 }
 
-func SetPath(in string) { h.SetPath(in) }
+func SetPath(in string) { defultPath = absPathify(in) }
 
 /*
 SetPath 设置路径
@@ -43,8 +41,10 @@ func (h *Hliog) SetPath(in string) {
 	if in != "" {
 		h.LogPath = absPathify(in)
 	} else {
-		h.LogPath = absPathify("./")
+		h.LogPath = absPathify(".")
 	}
+
+	fmt.Print(h.LogPath)
 }
 
 /**Logs
@@ -94,7 +94,38 @@ func newLogger(filePath string, level zapcore.Level, maxSize int, maxBackups int
 New 创建日志
 */
 func New() {
-	h.New()
+	mylog.New()
+}
+
+func defult() (dlog *Hliog) {
+
+	var (
+		err error
+	)
+
+	fullPath := absPathify(defultPath)
+
+	fullLogName := defultPath + string(os.PathSeparator) + defultName
+
+	if err != nil {
+		err = os.MkdirAll(fullPath, 0755)
+		if err != nil {
+			fmt.Println("创建目录失败，请检查权限:", defultPath, err)
+			os.Exit(110)
+		}
+	}
+	// 日志初始化
+	core := newLogger(fullLogName, 0, 128, 30, 7, true)
+	Logger := zap.New(core, zap.AddCaller(), zap.AddCallerSkip(1), zap.Development())
+
+	// 初始化信息
+	dlog = &Hliog{
+		LogPath: fullPath,
+		LogName: defultName,
+		Level:   0,
+		base:    Logger.Sugar(),
+	}
+	return
 }
 
 /*

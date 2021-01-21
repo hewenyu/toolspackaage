@@ -1,8 +1,10 @@
 package logger
 
-func init() {
+import "fmt"
 
-	h.SetName("test")
-	h.SetPath("./logs")
-	New()
+func init() {
+	fmt.Println("初始化")
+	SetName("test")
+	SetPath("./logs")
+	// New()
 }
