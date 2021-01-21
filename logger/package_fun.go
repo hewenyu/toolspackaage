@@ -48,3 +48,54 @@ Fatal
 func Fatal(args ...interface{}) {
 	h.Fatal(args)
 }
+
+// ------format-------
+
+/*
+Infof 加入了format
+*/
+func Infof(template string, args ...interface{}) {
+	h.Infof(template, args)
+}
+
+/*
+DEBUGf加入了format
+*/
+func Debugf(template string, args ...interface{}) {
+	h.Debugf(template, args)
+}
+
+/*
+Warnf 加入了format
+*/
+func Warnf(template string, args ...interface{}) {
+	h.Debugf(template, args)
+}
+
+/*
+DPanicf 加入了format
+*/
+func DPanicf(template string, args ...interface{}) {
+	h.DPanicf(template, args)
+}
+
+/*
+Errorf 加入了format
+*/
+func Errorf(template string, args ...interface{}) {
+	h.Errorf(template, args)
+}
+
+/*
+Errorf 加入了format
+*/
+func Panicf(template string, args ...interface{}) {
+	h.Panicf(template, args)
+}
+
+/*
+Fatalf 加入了format
+*/
+func Fatalf(template string, args ...interface{}) {
+	h.Fatalf(template, args)
+}
