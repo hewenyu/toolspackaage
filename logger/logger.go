@@ -1,6 +1,9 @@
 package logger
 
 import (
+	"fmt"
+	"os"
+
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"
@@ -98,9 +101,17 @@ func New() {
 New 创建日志
 */
 func (h *Hliog) New() {
+	var err error
+	_, err = os.Lstat(h.LogPath)
+	if err != nil {
+		err = os.MkdirAll(h.LogPath, 0755)
+		if err != nil {
+			fmt.Println("创建目录失败，请检查权限:", h.LogPath, err)
+			os.Exit(110)
+		}
+	}
 	// 日志初始化
 	core := newLogger(h.LogPath, h.Level, 128, 30, 7, true)
 	Logger := zap.New(core, zap.AddCaller(), zap.AddCallerSkip(1), zap.Development())
 	h.base = Logger.Sugar()
-	return
 }
