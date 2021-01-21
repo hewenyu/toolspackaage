@@ -1,54 +1,35 @@
 package logger
 
-// INFO ------------------------
-
 /*
 INFO
 */
-func Info(args ...interface{}) {
-	h.Info(args)
-}
-
-/*
-INFO
-*/
-func (h *Hliog) Info(args ...interface{}) {
-	h.base.Info(args)
-}
-
-// DEBUG ------------------------
-
-/*
-DEBUG
-*/
-func Debug(args ...interface{}) {
-	h.Debug(args)
+func (s *Hliog) Info(args ...interface{}) {
+	s.base.Info(args)
 }
 
 /*
 DEBUG
 */
-func (h *Hliog) Debug(args ...interface{}) {
-	h.base.Debug(args)
+func (s *Hliog) Debug(args ...interface{}) {
+	s.base.Debug(args)
+}
+
+/*
+Warn
+*/
+func (s *Hliog) Warn(args ...interface{}) {
+	s.base.Warn(args)
+}
+
+/*
+DPanic
+*/
+func (s *Hliog) DPanic(args ...interface{}) {
+	s.base.DPanic(args)
 }
 
 // func (s *HsLogs) With(args ...interface{}) *Hliog {
 // 	return &Hliog{base: s.base.With(s.sweetenFields(args)...)}
-// }
-
-// // Debug uses fmt.Sprint to construct and log a message.
-// func (s *HsLogs) Debug(args ...interface{}) {
-// 	s.log(DebugLevel, "", args, nil)
-// }
-
-// // Info uses fmt.Sprint to construct and log a message.
-// func (s *SugaredLogger) Info(args ...interface{}) {
-// 	s.log(InfoLevel, "", args, nil)
-// }
-
-// // Warn uses fmt.Sprint to construct and log a message.
-// func (s *SugaredLogger) Warn(args ...interface{}) {
-// 	s.log(WarnLevel, "", args, nil)
 // }
 
 // // Error uses fmt.Sprint to construct and log a message.
