@@ -17,8 +17,9 @@ import (
 )
 
 var (
+	NewPort = 9527
 	network = flag.String("net", "udp", "network to listen")
-	address = flag.String("addr", "0.0.0.0:3478", "address to listen")
+	address = flag.String("addr", "0.0.0.0:9527", "address to listen")
 	profile = flag.Bool("profile", false, "profile")
 )
 
@@ -136,7 +137,7 @@ func normalize(address string) string {
 		address = "0.0.0.0"
 	}
 	if !strings.Contains(address, ":") {
-		address = fmt.Sprintf("%s:%d", address, stun.DefaultPort)
+		address = fmt.Sprintf("%s:%d", address, NewPort)
 	}
 	return address
 }

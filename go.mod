@@ -3,6 +3,7 @@ module github.com/hewenyu/toolspackage
 go 1.14
 
 require (
+	github.com/ccding/go-stun v0.1.2
 	github.com/pkg/errors v0.8.1
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/jwalterweatherman v1.0.0

@@ -1,10 +1,10 @@
 package main
 
-import (
-	"github.com/hewenyu/toolspackage/p2p/server"
-)
+import "github.com/hewenyu/toolspackage/p2p/client"
 
 func main() {
-	// client.Client()
-	server.RunServer()
+	client.StunClient()
+	// client.XClient()
+
+	// server.RunServer()
 }
