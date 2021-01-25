@@ -12,6 +12,11 @@ var (
 	SetFile    *viper.Viper
 )
 
+/*
+读取配置文件
+*/
+func SetConfigName(in string) { SetFile.SetConfigName(in) }
+
 func init() {
 	SetFile.SetConfigName(ConfigName)
 	// viper.SetConfigName("config")     // 读取json配置文件

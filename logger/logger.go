@@ -83,9 +83,9 @@ func newLogger(filePath string, level zapcore.Level, maxSize int, maxBackups int
 		EncodeName:     zapcore.FullNameEncoder,
 	}
 	return zapcore.NewCore(
-		zapcore.NewConsoleEncoder(encoder), // 编码器配置
-		// zapcore.NewMultiWriteSyncer(zapcore.AddSync(os.Stdout), zapcore.AddSync(&hook)), // 打印到控制台和文件
-		zapcore.NewMultiWriteSyncer(zapcore.AddSync(&loggerPath)), //默认输出到文件
+		zapcore.NewConsoleEncoder(encoder),                                                    // 编码器配置
+		zapcore.NewMultiWriteSyncer(zapcore.AddSync(os.Stdout), zapcore.AddSync(&loggerPath)), // 打印到控制台和文件
+		// zapcore.NewMultiWriteSyncer(zapcore.AddSync(&loggerPath)), //默认输出到文件
 		atomicLevel, // 日志级别
 	)
 }

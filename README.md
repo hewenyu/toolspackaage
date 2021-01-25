@@ -6,6 +6,8 @@ go get github.com/hewenyu/toolspackage
 
 
 
+env
+
 ## 日志范例
 
 ```go
