@@ -28,7 +28,7 @@ func HeatCheck(c *stun.Client) {
 		}); err != nil {
 			panic(err)
 		}
-		time.Sleep(time.Second * 3)
+		time.Sleep(time.Second * 5)
 	}
 }
 
@@ -41,6 +41,15 @@ func StunClient() {
 	}
 
 	go HeatCheck(c)
+	// message := stun.MustBuild(stun.TransactionID, stun.BindingRequest)
+
+	// c.Start(message, func(res stun.Event) {
+	// 	if res.Error != nil {
+	// 		panic(res.Error)
+	// 	}
+
+	// 	fmt.Println(res.Message)
+	// })
 
 	for {
 		time.Sleep(time.Second * 10)

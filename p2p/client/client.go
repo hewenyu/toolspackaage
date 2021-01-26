@@ -26,7 +26,16 @@ func Client() {
 
 	logger.Info(tag)
 	srcAddr := &net.UDPAddr{IP: net.IPv4zero, Port: 9901} // 注意端口必须固定
-	dstAddr := &net.UDPAddr{IP: net.ParseIP("172.17.0.3"), Port: 9527}
+
+	logger.Info(*srcAddr)
+
+	dstAddr := &net.UDPAddr{IP: net.ParseIP("124.71.182.117"), Port: 9527}
+
+	// conn, err := net.Dial("udp", "124.71.182.117:9527")
+
+	// conn, err := net.Dial("udp", dstAddr)
+
+	// net.DialUDP("udp", laddr*net.UDPAddr, raddr*net.UDPAddr)
 	conn, err := net.DialUDP("udp", srcAddr, dstAddr)
 	if err != nil {
 		fmt.Println(err)
