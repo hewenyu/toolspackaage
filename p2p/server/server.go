@@ -17,13 +17,21 @@ func ServerDemo() {
 
 	data := make([]byte, 1024)
 	for {
-		_, remoteAddr, err := listener.ReadFromUDP(data)
+		n, remoteAddr, err := listener.ReadFromUDP(data)
 		if err != nil {
 			fmt.Printf("error during read: %s", err)
 		}
-		logger.Infof("<%s>", remoteAddr.String())
+		// 传递消息
+		message := string(data[:n])
 
-		listener.WriteToUDP([]byte("已经收到消息:"+remoteAddr.String()), remoteAddr)
+		switch message {
+		case "health":
+			logger.Infof("来自 <%s> 的心跳检查", remoteAddr.String())
+			listener.WriteToUDP([]byte("心跳检查OK"), remoteAddr)
+		default:
+			logger.Infof("<%s>", message, remoteAddr.String())
+			listener.WriteToUDP([]byte("已经收到消息:"+remoteAddr.String()), remoteAddr)
+		}
 
 		// peers = append(peers, *remoteAddr)
 		// if len(peers) == 2 {

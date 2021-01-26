@@ -33,9 +33,11 @@ func health_check(conn *net.UDPConn) {
 
 		if err != nil {
 			fmt.Printf("error during read: %s", err)
+
+			logger.Info(remoteAddr.String())
 		}
 
-		logger.Info(string(data[:n]), remoteAddr.String())
+		logger.Info(string(data[:n]))
 
 		time.Sleep(time.Second * 5)
 	}
@@ -55,7 +57,7 @@ func Client() {
 
 	dstAddr := &net.UDPAddr{IP: net.ParseIP("124.71.182.117"), Port: 9527}
 
-	logger.Info("本地 " + srcAddr.String() + "链接 远程 " + dstAddr.String())
+	logger.Info("本地 " + srcAddr.String() + "链接远程 " + dstAddr.String())
 
 	conn, err := net.DialUDP("udp", srcAddr, dstAddr)
 	defer conn.Close()
@@ -73,11 +75,13 @@ func Client() {
 	}
 
 	// 获取UDP 的信息
-	logger.Info(string(data[:n]))
-
-	logger.Info(n, remoteAddr.String())
+	logger.Info(string(data[:n]), remoteAddr.String())
 
 	go health_check(conn)
+
+	for {
+		time.Sleep(time.Second * 5)
+	}
 
 	// anotherPeer := parseAddr(string(data[:n]))
 	// fmt.Printf("local:%s server:%s another:%s\n", srcAddr, remoteAddr, anotherPeer.String())
