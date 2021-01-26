@@ -2,6 +2,7 @@ package client
 
 import (
 	"fmt"
+	"math/rand"
 	"net"
 	"os"
 	"strconv"
@@ -43,6 +44,9 @@ func health_check(conn *net.UDPConn) {
 	}
 }
 
+/*
+Client 客户端
+*/
 func Client() {
 	if len(os.Args) < 2 {
 		fmt.Println("请输入一个客户端标志")
@@ -53,7 +57,11 @@ func Client() {
 	tag = os.Args[1]
 
 	logger.Info(tag)
-	srcAddr := &net.UDPAddr{IP: net.IPv4zero, Port: 9901} // 注意端口必须固定
+
+	// 随机端口
+	localPort := rand.Intn(100) + 9000
+
+	srcAddr := &net.UDPAddr{IP: net.IPv4zero, Port: localPort} // 注意端口必须固定
 
 	dstAddr := &net.UDPAddr{IP: net.ParseIP("124.71.182.117"), Port: 9527}
 
