@@ -15,6 +15,32 @@ var tag string
 
 const HAND_SHAKE_MSG = "我是打洞消息"
 
+/*
+HeatCheck 心跳检测
+*/
+func health_check(conn *net.UDPConn) {
+	var (
+		data []byte
+		err  error
+	)
+	data = make([]byte, 1024)
+	for {
+		// 发送 health 检查
+		if _, err = conn.Write([]byte("health")); err != nil {
+			logger.Panic(err)
+		}
+		n, remoteAddr, err := conn.ReadFromUDP(data)
+
+		if err != nil {
+			fmt.Printf("error during read: %s", err)
+		}
+
+		logger.Info(string(data[:n]), remoteAddr.String())
+
+		time.Sleep(time.Second * 5)
+	}
+}
+
 func Client() {
 	if len(os.Args) < 2 {
 		fmt.Println("请输入一个客户端标志")
@@ -27,16 +53,13 @@ func Client() {
 	logger.Info(tag)
 	srcAddr := &net.UDPAddr{IP: net.IPv4zero, Port: 9901} // 注意端口必须固定
 
-	logger.Info(*srcAddr)
-
 	dstAddr := &net.UDPAddr{IP: net.ParseIP("124.71.182.117"), Port: 9527}
 
-	// conn, err := net.Dial("udp", "124.71.182.117:9527")
+	logger.Info("本地 " + srcAddr.String() + "链接 远程 " + dstAddr.String())
 
-	// conn, err := net.Dial("udp", dstAddr)
-
-	// net.DialUDP("udp", laddr*net.UDPAddr, raddr*net.UDPAddr)
 	conn, err := net.DialUDP("udp", srcAddr, dstAddr)
+	defer conn.Close()
+
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -48,9 +71,14 @@ func Client() {
 	if err != nil {
 		fmt.Printf("error during read: %s", err)
 	}
-	conn.Close()
 
-	logger.Info(n, *remoteAddr)
+	// 获取UDP 的信息
+	logger.Info(string(data[:n]))
+
+	logger.Info(n, remoteAddr.String())
+
+	go health_check(conn)
+
 	// anotherPeer := parseAddr(string(data[:n]))
 	// fmt.Printf("local:%s server:%s another:%s\n", srcAddr, remoteAddr, anotherPeer.String())
 	// // 开始打洞

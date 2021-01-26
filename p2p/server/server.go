@@ -13,7 +13,7 @@ func ServerDemo() {
 		fmt.Println(err)
 		return
 	}
-	logger.Infof("本地地址: <%s> \n", listener.RemoteAddr().String())
+	logger.Info("本地地址: <" + listener.LocalAddr().String() + ">")
 
 	data := make([]byte, 1024)
 	for {
