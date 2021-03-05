@@ -1,5 +1,8 @@
 package slice
 
+/*
+尽可能使用原地算法,节约内存使用
+*/
 //对切片进行倒序排列
 func Reverse(arr []interface{}) {
 	for i := 0; i < len(arr)/2; i++ {
