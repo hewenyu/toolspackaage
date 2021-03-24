@@ -6,7 +6,7 @@ leetcode 习题中
 算法核心：相邻两天，高抛低吸
 https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x2zsx1/
 */
-func maxProfit(prices []int) (max int) {
+func MaxProfit(prices []int) (max int) {
 	// 获利总数值
 	max = 0
 
