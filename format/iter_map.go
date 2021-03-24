@@ -28,7 +28,7 @@ func iterSlice(arr interface{}) (map[string]interface{}, error) {
 }
 
 /* map 格式化 */
-func iterMap(arr map[string]interface{}) (map[string]interface{}, error) {
+func IterMap(arr map[string]interface{}) (map[string]interface{}, error) {
 	v := reflect.ValueOf(arr)
 	ret := make(map[string]interface{})
 
