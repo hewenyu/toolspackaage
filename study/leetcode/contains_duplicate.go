@@ -1,8 +1,6 @@
 package leetcode
 
-import (
-	"sort"
-)
+import "github.com/hewenyu/toolspackage/format/slice"
 
 /*
 containsDuplicate 判断是否有相同的参数 现排序,后判断是否有相同的
@@ -10,7 +8,7 @@ https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x248f5/
 */
 func containsDuplicate(nums []int) bool {
 
-	sortInt(nums)
+	slice.SortInt(nums)
 
 	for i := 0; i < len(nums)-1; i++ {
 		if nums[i] == nums[i+1] {
@@ -20,10 +18,6 @@ func containsDuplicate(nums []int) bool {
 	}
 
 	return false
-}
-
-func sortInt(s []int) {
-	sort.Ints(s)
 }
 
 // 利用hash 的方式来处理数据
