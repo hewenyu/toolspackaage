@@ -6,7 +6,7 @@ import "github.com/hewenyu/toolspackage/format/slice"
 containsDuplicate 判断是否有相同的参数 现排序,后判断是否有相同的
 https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x248f5/
 */
-func containsDuplicate(nums []int) bool {
+func ContainsDuplicate(nums []int) bool {
 
 	slice.SortInt(nums)
 
@@ -21,9 +21,9 @@ func containsDuplicate(nums []int) bool {
 }
 
 // 利用hash 的方式来处理数据
-func containsDuplicate_fun2(nums []int) bool {
+func ContainsDuplicate_fun2(nums []int) bool {
 
-	m := make(map[int]struct{}, 0)
+	m := make(map[int]struct{})
 	for _, v := range nums {
 		if _, ok := m[v]; ok {
 			return true
