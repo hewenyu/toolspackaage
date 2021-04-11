@@ -1,8 +1,6 @@
 package study
 
-import "fmt"
-
-func reverseString(s []byte) []byte {
+func ReverseString(s []byte) []byte {
 
 	var (
 		fix  int
@@ -21,8 +19,8 @@ func reverseString(s []byte) []byte {
 	return back
 }
 
-func main() {
-	a := []byte("hello")
+// func main() {
+// 	a := []byte("hello")
 
-	fmt.Println(reverseString(a))
-}
+// 	fmt.Println(reverseString(a))
+// }

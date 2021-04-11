@@ -16,6 +16,18 @@ var tag string
 
 const HAND_SHAKE_MSG = "我是打洞消息"
 
+func parseAddr(addr string) *net.UDPAddr {
+	t := strings.Split(addr, ":")
+
+	println(t)
+	port, _ := strconv.Atoi(t[1])
+
+	return &net.UDPAddr{
+		IP:   net.ParseIP(t[0]),
+		Port: port,
+	}
+}
+
 /*
 HeatCheck 心跳检测
 */
@@ -45,6 +57,36 @@ func health_check(conn *net.UDPConn) {
 }
 
 /*
+listener 本地监听
+*/
+func listener(listener *net.UDPConn) {
+	var (
+		err error
+	)
+
+	if err != nil {
+		logger.Info(err.Error())
+		return
+	}
+
+	data := make([]byte, 1024)
+	for {
+		//
+		logger.Info("开始监听")
+		n, remoteAddr, err := listener.ReadFromUDP(data)
+		if err != nil {
+			fmt.Printf("error during read: %s", err)
+		}
+		// 传递消息
+		message := string(data[:n])
+
+		logger.Info("后台收到消息:", message)
+
+		listener.WriteToUDP([]byte("已经收到消息:"+remoteAddr.String()), remoteAddr)
+	}
+}
+
+/*
 Client 客户端
 */
 func Client() {
@@ -68,7 +110,13 @@ func Client() {
 	logger.Info("本地 " + srcAddr.String() + "链接远程 " + dstAddr.String())
 
 	conn, err := net.DialUDP("udp", srcAddr, dstAddr)
+
+	go listener(conn)
 	defer conn.Close()
+
+	// go listener(srcAddr)
+
+	go health_check(conn)
 
 	if err != nil {
 		fmt.Println(err)
@@ -83,27 +131,17 @@ func Client() {
 	}
 
 	// 获取UDP 的信息
-	logger.Info(string(data[:n]), remoteAddr.String())
 
-	go health_check(conn)
+	message := string(data[:n])
+
+	logger.Info(message, remoteAddr.String())
 
 	for {
 		time.Sleep(time.Second * 5)
 	}
 
-	// anotherPeer := parseAddr(string(data[:n]))
-	// fmt.Printf("local:%s server:%s another:%s\n", srcAddr, remoteAddr, anotherPeer.String())
-	// // 开始打洞
-	// bidirectionHole(srcAddr, &anotherPeer)
 }
-func parseAddr(addr string) net.UDPAddr {
-	t := strings.Split(addr, ":")
-	port, _ := strconv.Atoi(t[1])
-	return net.UDPAddr{
-		IP:   net.ParseIP(t[0]),
-		Port: port,
-	}
-}
+
 func bidirectionHole(srcAddr *net.UDPAddr, anotherAddr *net.UDPAddr) {
 	conn, err := net.DialUDP("udp", srcAddr, anotherAddr)
 	if err != nil {
@@ -131,4 +169,8 @@ func bidirectionHole(srcAddr *net.UDPAddr, anotherAddr *net.UDPAddr) {
 			logger.Info("收到数据:%s\n", data[:n])
 		}
 	}
+}
+
+func Bid() {
+
 }

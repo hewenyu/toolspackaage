@@ -4,9 +4,7 @@ package server
 import (
 	"flag"
 	"fmt"
-	"log"
 	"net"
-	"net/http"
 	_ "net/http/pprof"
 	"strings"
 
@@ -142,19 +140,19 @@ func normalize(address string) string {
 	return address
 }
 
-func RunServer() {
-	flag.Parse()
-	if *profile {
-		go func() {
-			log.Println(http.ListenAndServe("localhost:6060", nil))
-		}()
-	}
-	switch *network {
-	case "udp":
-		normalized := normalize(*address)
-		fmt.Println("gortc/stund listening on", normalized, "via", *network)
-		log.Fatal(ListenUDPAndServe(*network, normalized))
-	default:
-		log.Fatalln("unsupported network:", *network)
-	}
-}
+// func RunServer() {
+// 	flag.Parse()
+// 	if *profile {
+// 		go func() {
+// 			log.Println(http.ListenAndServe("localhost:6060", nil))
+// 		}()
+// 	}
+// 	switch *network {
+// 	case "udp":
+// 		normalized := normalize(*address)
+// 		fmt.Println("gortc/stund listening on", normalized, "via", *network)
+// 		log.Fatal(ListenUDPAndServe(*network, normalized))
+// 	default:
+// 		log.Fatalln("unsupported network:", *network)
+// 	}
+// }
