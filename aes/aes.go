@@ -1,29 +1,34 @@
-package ebc
+package aes
 
 import (
 	"crypto/aes"
 	"encoding/base64"
+	"errors"
 )
 
 /*
 ECBDecrypter AES ECB 解密
 */
-func ECBDecrypter(connext, key string) []byte {
+func ECBDecrypter(connext, key string) (ciphertext []byte, err error) {
 	// base64 解密
-	ciphertext, _ := base64.StdEncoding.DecodeString(connext)
+	ciphertext, _ = base64.StdEncoding.DecodeString(connext)
 	block, err := aes.NewCipher([]byte(key))
 
 	if err != nil {
-		panic(err)
+		return
 	}
 
 	if len(ciphertext) < aes.BlockSize {
-		panic("ciphertext too short")
+
+		err = errors.New("ciphertext too short")
+		return
 	}
 
 	// ECB mode always works in whole blocks.
 	if len(ciphertext)%aes.BlockSize != 0 {
-		panic("ciphertext is not a multiple of the block size")
+		err = errors.New("ciphertext is not a multiple of the block size")
+
+		return
 	}
 
 	mode := NewECBDecrypter(block)
@@ -31,23 +36,24 @@ func ECBDecrypter(connext, key string) []byte {
 	// CryptBlocks can work in-place if the two arguments are the same.
 	mode.CryptBlocks(ciphertext, ciphertext)
 
-	return ciphertext
+	return
 }
 
 /*
 ECBEncrypter AES ECB 加密
 */
-func ECBEncrypter(connext, key string) (msg string) {
+func ECBEncrypter(connext, key string) (msg string, err error) {
 
-	plaintext := []byte(connext)
+	plaintext := PKCS5Padding([]byte(connext), aes.BlockSize)
 
 	if len(plaintext)%aes.BlockSize != 0 {
-		panic("plaintext is not a multiple of the block size")
+		err = errors.New("plaintext is not a multiple of the block size")
+		return
 	}
 
 	block, err := aes.NewCipher([]byte(key))
 	if err != nil {
-		panic(err)
+		return
 	}
 
 	ciphertext := make([]byte, len(plaintext))

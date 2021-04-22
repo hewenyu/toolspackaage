@@ -25,7 +25,7 @@ func TestQueue_Start(t *testing.T) {
 	quit := make(chan int, 1)
 	go func() {
 		for i := 0; i < 5; i++ {
-			time.Sleep(time.Second * 10)
+			time.Sleep(time.Second * 1)
 			fmt.Println(<-c)
 		}
 
