@@ -1,10 +1,12 @@
 module github.com/hewenyu/toolspackage
 
-go 1.14
+go 1.16
 
 require (
 	github.com/ccding/go-stun v0.1.2
 	github.com/gomodule/redigo v1.8.4
+	github.com/lestrrat-go/file-rotatelogs v2.4.0+incompatible
+	github.com/lestrrat-go/strftime v1.0.4 // indirect
 	github.com/pkg/errors v0.8.1
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/jwalterweatherman v1.0.0

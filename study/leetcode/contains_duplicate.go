@@ -1,6 +1,6 @@
 package leetcode
 
-import "github.com/hewenyu/toolspackage/format/slice"
+import "github.com/hewenyu/toolspackage/release/format/slice"
 
 /*
 containsDuplicate 判断是否有相同的参数 现排序,后判断是否有相同的
