@@ -1,57 +1,50 @@
 package client
 
-import (
-	"fmt"
-	"time"
+// /*
+// HeatCheck 心跳检测
+// */
+// func HeatCheck(c *stun.Client) {
+// 	var xorAddr stun.XORMappedAddress
+// 	for {
+// 		message := stun.MustBuild(stun.TransactionID, stun.BindingRequest)
 
-	"gortc.io/stun"
-)
+// 		if err := c.Do(message, func(res stun.Event) {
+// 			if res.Error != nil {
+// 				panic(res.Error)
+// 			}
+// 			// Decoding XOR-MAPPED-ADDRESS attribute from message.
 
-/*
-HeatCheck 心跳检测
-*/
-func HeatCheck(c *stun.Client) {
-	var xorAddr stun.XORMappedAddress
-	for {
-		message := stun.MustBuild(stun.TransactionID, stun.BindingRequest)
+// 			if err := xorAddr.GetFrom(res.Message); err != nil {
+// 				panic(err)
+// 			}
+// 			fmt.Println("your IP is", xorAddr.IP, "PORT", xorAddr.Port, "心跳存活")
+// 		}); err != nil {
+// 			panic(err)
+// 		}
+// 		time.Sleep(time.Second * 5)
+// 	}
+// }
 
-		if err := c.Do(message, func(res stun.Event) {
-			if res.Error != nil {
-				panic(res.Error)
-			}
-			// Decoding XOR-MAPPED-ADDRESS attribute from message.
+// func StunClient() {
 
-			if err := xorAddr.GetFrom(res.Message); err != nil {
-				panic(err)
-			}
-			fmt.Println("your IP is", xorAddr.IP, "PORT", xorAddr.Port, "心跳存活")
-		}); err != nil {
-			panic(err)
-		}
-		time.Sleep(time.Second * 5)
-	}
-}
+// 	// 创建一个stun链接
+// 	c, err := stun.Dial("udp", "124.71.182.117:9527")
+// 	if err != nil {
+// 		panic(err)
+// 	}
 
-func StunClient() {
+// 	go HeatCheck(c)
+// 	// message := stun.MustBuild(stun.TransactionID, stun.BindingRequest)
 
-	// 创建一个stun链接
-	c, err := stun.Dial("udp", "124.71.182.117:9527")
-	if err != nil {
-		panic(err)
-	}
+// 	// c.Start(message, func(res stun.Event) {
+// 	// 	if res.Error != nil {
+// 	// 		panic(res.Error)
+// 	// 	}
 
-	go HeatCheck(c)
-	// message := stun.MustBuild(stun.TransactionID, stun.BindingRequest)
+// 	// 	fmt.Println(res.Message)
+// 	// })
 
-	// c.Start(message, func(res stun.Event) {
-	// 	if res.Error != nil {
-	// 		panic(res.Error)
-	// 	}
-
-	// 	fmt.Println(res.Message)
-	// })
-
-	for {
-		time.Sleep(time.Second * 10)
-	}
-}
+// 	for {
+// 		time.Sleep(time.Second * 10)
+// 	}
+// }
