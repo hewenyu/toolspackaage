@@ -1,4 +1,4 @@
-package format
+package maps
 
 import (
 	"bytes"

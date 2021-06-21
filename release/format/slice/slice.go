@@ -1,4 +1,4 @@
-package format
+package slice
 
 /*
 stringInSlice 判断是切片中是否存在
