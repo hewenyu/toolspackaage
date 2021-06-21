@@ -1,7 +1,6 @@
 package yaml
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/spf13/viper"
@@ -35,11 +34,11 @@ func init() {
 	}
 }
 
-func main() {
-	fmt.Println("获取配置文件的port", viper.GetInt("port"))
-	fmt.Println("获取配置文件的mysql.url", viper.GetString(`mysql.url`))
-	fmt.Println("获取配置文件的mysql.username", viper.GetString(`mysql.username`))
-	fmt.Println("获取配置文件的mysql.password", viper.GetString(`mysql.password`))
-	fmt.Println("获取配置文件的redis", viper.GetStringSlice("redis"))
-	fmt.Println("获取配置文件的smtp", viper.GetStringMap("smtp"))
-}
+// func main() {
+// 	fmt.Println("获取配置文件的port", viper.GetInt("port"))
+// 	fmt.Println("获取配置文件的mysql.url", viper.GetString(`mysql.url`))
+// 	fmt.Println("获取配置文件的mysql.username", viper.GetString(`mysql.username`))
+// 	fmt.Println("获取配置文件的mysql.password", viper.GetString(`mysql.password`))
+// 	fmt.Println("获取配置文件的redis", viper.GetStringSlice("redis"))
+// 	fmt.Println("获取配置文件的smtp", viper.GetStringMap("smtp"))
+// }

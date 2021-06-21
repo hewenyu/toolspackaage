@@ -1,6 +1,7 @@
 package orm
 
 import (
+	"github.com/hewenyu/toolspackage/logger"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -22,10 +23,14 @@ func OpenPG(dsn string) (db *gorm.DB) {
 	}), &gorm.Config{})
 
 	if err != nil {
+		logger.Fatalf("数据库链接失败", err.Error())
 		// config.BaseLog.Fatalf("数据库链接失败", err.Error())
 	}
 
 	// config.BaseLog.Info("数据库初始化完成")
+	// if err != nil {
+	// return
+	// }
 
 	return
 }
@@ -40,7 +45,7 @@ func ResetDatabase(db *gorm.DB) {
 cleanDatabase 删除表
 */
 func CleanDatabase(db *gorm.DB) {
-	db.Migrator().DropTable(ModelWithHistory...)
+	_ = db.Migrator().DropTable(ModelWithHistory...)
 }
 
 /*
@@ -50,5 +55,5 @@ func SetupDatabase(db *gorm.DB) {
 	db.Exec("create extension IF NOT EXISTS hstore;")
 	// 为了使用uuid
 	db.Exec("create extension IF NOT EXISTS \"uuid-ossp\"")
-	db.AutoMigrate(ModelWithHistory...)
+	_ = db.AutoMigrate(ModelWithHistory...)
 }

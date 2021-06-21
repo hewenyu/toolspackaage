@@ -26,6 +26,10 @@ redisGet 从redis中获取数据
 func redisGet(keys string) (result_str string, err error) {
 
 	conn, err := redis.DialURL(RedisUrl)
+
+	if err != nil {
+		return
+	}
 	defer conn.Close()
 
 	result, err := conn.Do("GET", keys)
@@ -62,10 +66,14 @@ func formatRedisUrl(redis_pwd, redis_host, redis_port, redis_db string) (format_
 /*
 redisGet 往redis写入数据获取数据
 */
-func redisSet(keys string, values string) (result bool, err error) {
+func RedisSet(keys string, values string) (result bool, err error) {
 
 	var Expire = 60
 	conn, err := redis.DialURL(RedisUrl)
+
+	if err != nil {
+		return
+	}
 	defer conn.Close()
 
 	_, err = conn.Do("SET", keys, values)
