@@ -13,14 +13,10 @@ env
 ```go
 package main
 
-import "github.com/hewenyu/toolspackage/logger"
+import "github.com/hewenyu/toolspackage/release/zlog"
 
 func main() {
-
-	logger.SetName("test.log")
-	logger.SetPath("./logs")
-
-	logger.Info("test 日志")
+	zlog.Zap().Info("test 日志")
 }
 
 ```
