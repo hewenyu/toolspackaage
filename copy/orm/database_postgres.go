@@ -1,7 +1,7 @@
 package orm
 
 import (
-	"github.com/hewenyu/toolspackage/logger"
+	"github.com/hewenyu/toolspackage/release/zlog"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -23,8 +23,7 @@ func OpenPG(dsn string) (db *gorm.DB) {
 	}), &gorm.Config{})
 
 	if err != nil {
-		logger.Fatalf("数据库链接失败", err.Error())
-		// config.BaseLog.Fatalf("数据库链接失败", err.Error())
+		zlog.Zap().Sugar().Fatalf("数据库链接失败", err.Error())
 	}
 
 	// config.BaseLog.Info("数据库初始化完成")
