@@ -12,28 +12,31 @@ type DataNode struct {
 	FatherID string    `json:"father"`
 }
 
-/*
-DataNodeList 返回给前端的数据信息整合列表
-*/
+/**
+ * DataNodeList
+ * 返回给前端的数据信息整合列表
+ */
 type DataNodeList []DataNode
 
-/*
-GetID 获取ID
-*/
+/**
+ * GetID 获取ID
+ */
 func (s DataNode) GetID() string {
 	return s.BaseID
 }
 
-/*
-GetFatherID 父id
-*/
+/**
+ * GetFatherID
+ * 父id
+ */
 func (s DataNode) GetFatherID() string {
 	return s.FatherID
 }
 
-/*
-GetTime 时间
-*/
+/**
+ * GetTime
+ * 时间
+ */
 func (s DataNode) GetTime() int64 {
 	return s.Mydate.UnixNano()
 }
