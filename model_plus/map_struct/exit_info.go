@@ -8,12 +8,7 @@ type ExitInfo struct {
 	data map[string]struct{}
 }
 
-// NewExitInfo 初始化
-func NewExitInfo() *ExitInfo {
-	return &ExitInfo{
-		data: make(map[string]struct{}),
-	}
-}
+
 
 // IsExit 是否存在
 func (d *ExitInfo) IsExit(keys string) bool {
@@ -30,15 +25,7 @@ func (d *ExitInfo) IsExit(keys string) bool {
 	}
 }
 
-// Add 新增
-func (d *ExitInfo) Add(keys string) {
-	
-	d.mu.Lock()
-	
-	defer d.mu.Unlock()
-	
-	d.data[keys] = struct{}{}
-}
+
 
 // Del 删除
 func (d *ExitInfo) Del(keys string) {
