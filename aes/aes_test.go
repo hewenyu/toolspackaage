@@ -10,7 +10,7 @@ func Test_ExampleNewECBDecrypter(t *testing.T) {
 	key := "11111111111111111111111111111111"
 	data := "FbV6Kes1fJ5PtKZwy6IXeoj35RNft9Muz+YUVvwBLP0="
 
-	ciphertext, _ := ECBDecrypter(data, key)
+	ciphertext, _ := ECBDecrypt(data, key)
 
 	fmt.Printf("%s\n", ciphertext)
 
@@ -21,7 +21,7 @@ func Test_ECBEncrypter(t *testing.T) {
 
 	key := "11111111111111111111111111111111"
 
-	ms, err := ECBEncrypter(plaintext, key)
+	ms, err := ECBEncrypt(plaintext, key)
 
 	if err != nil {
 		fmt.Println(err.Error())

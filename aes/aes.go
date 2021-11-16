@@ -7,11 +7,11 @@ import (
 )
 
 /*
-ECBDecrypter AES ECB 解密
+ECBDecrypt AES ECB 解密
 */
-func ECBDecrypter(connext, key string) (ciphertext []byte, err error) {
+func ECBDecrypt(context, key string) (ciphertext []byte, err error) {
 	// base64 解密
-	ciphertext, _ = base64.StdEncoding.DecodeString(connext)
+	ciphertext, _ = base64.StdEncoding.DecodeString(context)
 	block, err := aes.NewCipher([]byte(key))
 
 	if err != nil {
@@ -40,11 +40,11 @@ func ECBDecrypter(connext, key string) (ciphertext []byte, err error) {
 }
 
 /*
-ECBEncrypter AES ECB 加密
+ECBEncrypt AES ECB 加密
 */
-func ECBEncrypter(connext, key string) (msg string, err error) {
+func ECBEncrypt(context, key string) (msg string, err error) {
 
-	plaintext := PKCS5Padding([]byte(connext), aes.BlockSize)
+	plaintext := PKCS5Padding([]byte(context), aes.BlockSize)
 
 	if len(plaintext)%aes.BlockSize != 0 {
 		err = errors.New("plaintext is not a multiple of the block size")
