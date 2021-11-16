@@ -8,7 +8,6 @@ import (
 )
 
 var (
-	DB               *gorm.DB
 	ModelWithHistory []interface{}
 )
 
