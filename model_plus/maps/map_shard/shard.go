@@ -1,7 +1,7 @@
 package map_shard
 
 type CountShard struct {
-	data       []*CountMessage
+	data       []*CountMap
 	shardTotal int
 }
 
