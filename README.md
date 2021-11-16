@@ -11,10 +11,11 @@ go get github.com/hewenyu/toolspackage@v0.0.7
 ```go
 package main
 
-import "github.com/hewenyu/toolspackage/release/zlog"
+import "github.com/hewenyu/toolspackage/klog"
+
 
 func main() {
-	zlog.Zap().Info("test 日志")
+	klog.Zap().Info("test 日志")
 }
 
 ```
