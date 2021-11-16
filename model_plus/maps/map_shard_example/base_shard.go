@@ -1,4 +1,4 @@
-package map_shard
+package map_shard_example
 
 import "sync"
 
