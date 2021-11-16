@@ -1,4 +1,4 @@
-package map_shard_example
+package base_shard
 
 import "sync"
 
@@ -27,3 +27,4 @@ func NewCountMap() *CountMap {
 	}
 	
 }
+
