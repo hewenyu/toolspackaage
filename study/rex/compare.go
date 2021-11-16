@@ -19,10 +19,10 @@ func Run(taskId, sleeping, timeout int, ch chan string) {
 	}
 }
 
-func run(taskId, sleeptime int, ch chan string) {
+func run(taskId, sleeping int, ch chan string) {
 
-	time.Sleep(time.Duration(sleeptime) * time.Second)
-	ch <- fmt.Sprintf("task id %d , sleep %d second", taskId, sleeptime)
+	time.Sleep(time.Duration(sleeping) * time.Second)
+	ch <- fmt.Sprintf("task id %d , sleep %d second", taskId, sleeping)
 	return
 }
 

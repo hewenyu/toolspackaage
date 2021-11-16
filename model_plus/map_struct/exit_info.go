@@ -1,4 +1,4 @@
-package model_plus
+package map_struct
 
 import "sync"
 

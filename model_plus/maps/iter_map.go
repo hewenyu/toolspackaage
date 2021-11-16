@@ -47,19 +47,19 @@ func flatMap(arr map[string]interface{}) (map[string]interface{}, error) {
 		return arr, errors.New("not match Map")
 	}
 
-	retfacf := make(map[string]interface{})
+	reMaps := make(map[string]interface{})
 
 	for keys, values := range arr {
 		/* 判断里面value的类型 */
-		v_values := reflect.ValueOf(values)
+		vValues := reflect.ValueOf(values)
 
-		switch v_values.Kind() {
+		switch vValues.Kind() {
 		case reflect.Slice:
 			ret, _ := flatSlice(values)
 
 			for miniK, miniV := range ret {
 				fixStr := keys + "." + miniK
-				retfacf[fixStr] = miniV
+				reMaps[fixStr] = miniV
 			}
 
 		case reflect.Map:
@@ -68,22 +68,22 @@ func flatMap(arr map[string]interface{}) (map[string]interface{}, error) {
 
 			for miniK, miniV := range ret {
 				fixStr := keys + "." + miniK
-				retfacf[fixStr] = miniV
+				reMaps[fixStr] = miniV
 			}
 		default:
-			retfacf[keys] = values
+			reMaps[keys] = values
 
 		}
 
 	}
-	return retfacf, nil
+	return reMaps, nil
 
 }
 
 /* Slice 平铺展开*/
 func flatSlice(arr interface{}) (map[string]interface{}, error) {
 
-	retfacf := make(map[string]interface{})
+	reMaps := make(map[string]interface{})
 	retRes, _ := iterSlice(arr)
 
 	for keys, values := range retRes {
@@ -94,7 +94,7 @@ func flatSlice(arr interface{}) (map[string]interface{}, error) {
 
 			for miniK, miniV := range ret {
 				fixStr := keys + "." + miniK
-				retfacf[fixStr] = miniV
+				reMaps[fixStr] = miniV
 			}
 		case reflect.Map:
 			rec, _ := values.(map[string]interface{})
@@ -102,14 +102,14 @@ func flatSlice(arr interface{}) (map[string]interface{}, error) {
 
 			for miniK, miniV := range ret {
 				fixStr := keys + "." + miniK
-				retfacf[fixStr] = miniV
+				reMaps[fixStr] = miniV
 			}
 		default:
-			retfacf[keys] = values
+			reMaps[keys] = values
 
 		}
 	}
-	return retfacf, nil
+	return reMaps, nil
 }
 
 /* 将多维json 扁平化输出为一维 */

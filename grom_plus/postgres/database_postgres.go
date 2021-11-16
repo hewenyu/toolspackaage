@@ -1,4 +1,4 @@
-package orm
+package postgres
 
 import (
 	"github.com/hewenyu/toolspackage/release/zlog"

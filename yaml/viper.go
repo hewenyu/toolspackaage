@@ -2,7 +2,7 @@ package yaml
 
 import (
 	"log"
-
+	
 	"github.com/spf13/viper"
 )
 
@@ -11,9 +11,7 @@ var (
 	SetFile    *viper.Viper
 )
 
-/*
-读取配置文件
-*/
+// SetConfigName 读取配置文件
 func SetConfigName(in string) { SetFile.SetConfigName(in) }
 
 func init() {
