@@ -2,7 +2,7 @@
 go 自用的扩展包
 
 
-go get github.com/hewenyu/toolspackage@v0.0.7
+go get github.com/hewenyu/toolspackage@v0.0.8
 
 
 
