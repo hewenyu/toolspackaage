@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func Test_ExampleNewECBDecrypter(t *testing.T) {
+func Test_ExampleNewECBDecrypt(t *testing.T) {
 
 	key := "11111111111111111111111111111111"
 	data := "FbV6Kes1fJ5PtKZwy6IXeoj35RNft9Muz+YUVvwBLP0="
@@ -16,7 +16,7 @@ func Test_ExampleNewECBDecrypter(t *testing.T) {
 
 }
 
-func Test_ECBEncrypter(t *testing.T) {
+func Test_ECBEncrypt(t *testing.T) {
 	plaintext := `{"hello":"world"}`
 
 	key := "11111111111111111111111111111111"
