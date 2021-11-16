@@ -15,24 +15,22 @@ var (
 func init() {
 	
 	db = NewConn()
-	sqlDirver, err := db.DB()
+	sqlDriver, err := db.DB()
 	
 	if err != nil {
 		log.Println(err.Error())
 	}
 	
-	sqlDirver.SetMaxIdleConns(10)                   //最大空闲连接数
-	sqlDirver.SetMaxOpenConns(30)                   //最大连接数
-	sqlDirver.SetConnMaxLifetime(time.Second * 300) //设置连接空闲超时
-	
-	// defer sqlDirver.Close()
+	sqlDriver.SetMaxIdleConns(10)                   //最大空闲连接数
+	sqlDriver.SetMaxOpenConns(30)                   //最大连接数
+	sqlDriver.SetConnMaxLifetime(time.Second * 300) //设置连接空闲超时
 	
 	SetupDatabase(db)
 }
 
 func NewConn() *gorm.DB {
 	
-	_pg_config := POSTGRES{
+	pgConfig := POSTGRES{
 		Name:        "postgres",
 		User:        "postgres",
 		Host:        "localhost",
@@ -42,7 +40,7 @@ func NewConn() *gorm.DB {
 		SSLMODE:     "disable",
 	}
 	
-	return _pg_config.NewConnection()
+	return pgConfig.NewConnection()
 	
 }
 
@@ -51,14 +49,14 @@ func NewConn() *gorm.DB {
  */
 func GetDB() *gorm.DB {
 	
-	sqlDirver, err := db.DB()
+	sqlDriver, err := db.DB()
 	
 	if err != nil {
 		log.Println(err.Error())
 	}
 	
-	if err := sqlDirver.Ping(); err != nil {
-		err := sqlDirver.Close()
+	if err := sqlDriver.Ping(); err != nil {
+		err := sqlDriver.Close()
 		if err != nil {
 			return nil
 		}
