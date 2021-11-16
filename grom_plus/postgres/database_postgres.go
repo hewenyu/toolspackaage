@@ -1,7 +1,8 @@
 package postgres
 
 import (
-	"github.com/hewenyu/toolspackage/release/zlog"
+	"fmt"
+	"github.com/hewenyu/toolspackage/global_variable"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -16,21 +17,16 @@ open 链接PG数据库
 dsn "host=localhost user=gorm password=gorm dbname=gorm port=9920 sslmode=disable TimeZone=Asia/Shanghai"
 */
 func OpenPG(dsn string) (db *gorm.DB) {
-
+	
 	db, err := gorm.Open(postgres.New(postgres.Config{
 		DSN:                  dsn,
 		PreferSimpleProtocol: true, // 禁用缓存
 	}), &gorm.Config{})
-
+	
 	if err != nil {
-		zlog.Zap().Sugar().Fatalf("数据库链接失败", err.Error())
+		global_variable.CLOG.Fatal(fmt.Sprintf("数据库链接失败:%v", err.Error()))
 	}
-
-	// config.BaseLog.Info("数据库初始化完成")
-	// if err != nil {
-	// return
-	// }
-
+	
 	return
 }
 
