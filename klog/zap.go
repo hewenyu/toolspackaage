@@ -20,7 +20,7 @@ const (
 	Format        = "console"
 	LinkName      = "latest.log"
 	InConsole     = true
-	Prefix        = "[SERVYOU]"
+	Prefix        = "[YUAN]"
 	//LogPrefix     = "base"
 )
 
