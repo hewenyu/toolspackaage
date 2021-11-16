@@ -2,105 +2,106 @@ package slice
 
 import "sort"
 
+// SortString 切片排序
 func SortString(s []string) {
 	sort.Strings(s)
 }
 
-//切片排序
+// SortInt 切片排序
 func SortInt(s []int) {
 	sort.Ints(s)
 }
 
-//切片排序
+// SortInt8 切片排序
 func SortInt8(s []int8) {
 	sort.Slice(s, func(i, j int) bool {
 		return s[i] < s[j]
 	})
 }
 
-//切片排序
+// SortInt16 切片排序
 func SortInt16(s []int16) {
 	sort.Slice(s, func(i, j int) bool {
 		return s[i] < s[j]
 	})
 }
 
-//切片排序
+// SortInt32 切片排序
 func SortInt32(s []int32) {
 	sort.Slice(s, func(i, j int) bool {
 		return s[i] < s[j]
 	})
 }
 
-//切片排序
+// SortInt64 切片排序
 func SortInt64(s []int64) {
 	sort.Slice(s, func(i, j int) bool {
 		return s[i] < s[j]
 	})
 }
 
-//切片排序
+// SortUint 切片排序
 func SortUint(s []uint) {
 	sort.Slice(s, func(i, j int) bool {
 		return s[i] < s[j]
 	})
 }
 
-//切片排序
+// SortUint8 切片排序
 func SortUint8(s []uint8) {
 	sort.Slice(s, func(i, j int) bool {
 		return s[i] < s[j]
 	})
 }
 
-//切片排序
+// SortUint16 切片排序
 func SortUint16(s []uint16) {
 	sort.Slice(s, func(i, j int) bool {
 		return s[i] < s[j]
 	})
 }
 
-//切片排序
+// SortUint32 切片排序
 func SortUint32(s []uint32) {
 	sort.Slice(s, func(i, j int) bool {
 		return s[i] < s[j]
 	})
 }
 
-//切片排序
+// SortUint64 切片排序
 func SortUint64(s []uint64) {
 	sort.Slice(s, func(i, j int) bool {
 		return s[i] < s[j]
 	})
 }
 
-//切片排序
+// SortUintptr 切片排序
 func SortUintptr(s []uintptr) {
 	sort.Slice(s, func(i, j int) bool {
 		return s[i] < s[j]
 	})
 }
 
-//切片排序
+// SortFloat32 切片排序
 func SortFloat32(s []float32) {
 	sort.Slice(s, func(i, j int) bool {
 		return s[i] < s[j]
 	})
 }
 
-//切片排序
+// SortFloat64 切片排序
 func SortFloat64(s []float64) {
 	sort.Float64s(s)
 }
 
-//切片排序
+// SortRune 切片排序
 func SortRune(s []rune) {
 	sort.Slice(s, func(i, j int) bool {
 		return s[i] < s[j]
 	})
 }
 
-//切片排序
+// SortByte 切片排序
 func SortByte(s []byte) {
 	sort.Slice(s, func(i, j int) bool {
 		return s[i] < s[j]
