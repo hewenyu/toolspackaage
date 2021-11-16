@@ -7,22 +7,22 @@ import (
 
 const RegEx = "%"
 
-func Run(task_id, sleeptime, timeout int, ch chan string) {
-	ch_run := make(chan string)
-	go run(task_id, sleeptime, ch_run)
+func Run(taskId, sleeping, timeout int, ch chan string) {
+	chRun := make(chan string)
+	go run(taskId, sleeping, chRun)
 	select {
-	case re := <-ch_run:
+	case re := <-chRun:
 		ch <- re
 	case <-time.After(time.Duration(timeout) * time.Second):
-		re := fmt.Sprintf("task id %d , timeout", task_id)
+		re := fmt.Sprintf("task id %d , timeout", taskId)
 		ch <- re
 	}
 }
 
-func run(task_id, sleeptime int, ch chan string) {
+func run(taskId, sleeptime int, ch chan string) {
 
 	time.Sleep(time.Duration(sleeptime) * time.Second)
-	ch <- fmt.Sprintf("task id %d , sleep %d second", task_id, sleeptime)
+	ch <- fmt.Sprintf("task id %d , sleep %d second", taskId, sleeptime)
 	return
 }
 
