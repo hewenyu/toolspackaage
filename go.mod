@@ -3,6 +3,7 @@ module github.com/hewenyu/toolspackage
 go 1.16
 
 require (
+	github.com/confluentinc/confluent-kafka-go v1.7.0
 	github.com/elastic/go-elasticsearch/v6 v6.8.10
 	github.com/gin-gonic/gin v1.7.4
 	github.com/gomodule/redigo v1.8.5
