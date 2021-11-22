@@ -18,3 +18,25 @@ func (c CountNum) AddCount(okay bool) CountNum {
 		}
 	}
 }
+
+// IsSet 是否存在
+func (c *CountMap) IsSet(keys string) bool {
+	
+	c.mu.RLock()
+	defer c.mu.RUnlock()
+	
+	_, ok := c.data[keys]
+	
+	return ok
+}
+
+// Set 是否存在
+func (c *CountMap) Set(keys string) bool {
+	
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	
+	_, ok := c.data[keys]
+	
+	return ok
+}

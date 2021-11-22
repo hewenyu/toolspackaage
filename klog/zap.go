@@ -25,11 +25,11 @@ const (
 )
 
 func Zap() (logger *zap.Logger) {
-	return logZap(LogLevel, Director)
+	return logZap(setMode, Director)
 }
 
 func NewZap(dir string) (logger *zap.Logger) {
-	return logZap(LogLevel, dir)
+	return logZap(setMode, dir)
 }
 
 func logZap(loggerLevel string, dir string) (logger *zap.Logger) {
