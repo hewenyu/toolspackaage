@@ -106,11 +106,9 @@ func recursiveTree(tree *Tree, nodes *[]INode, mapInt *map[int]bool) {
 			childTree := &Tree{
 				Data: v.GetData(),
 			}
-
-			recursiveTree(childTree, nodes, mapInt)
 			tree.Children = append(tree.Children, *childTree)
-
 			(*mapInt)[index] = true
+			recursiveTree(childTree, nodes, mapInt)
 
 		}
 
